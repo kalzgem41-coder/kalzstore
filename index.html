@@ -6,193 +6,179 @@
 <title>KALZ STORE</title>
 
 <style>
-:root{
-  --neon1:#00eaff;
-  --neon2:#7c7cff;
-  --neon3:#00ffb3;
-  --bg1:#020617;
-  --bg2:#050b1a;
-}
-
-*{box-sizing:border-box}
+*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
 body{
   margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:linear-gradient(180deg,var(--bg2),var(--bg1));
+  background:radial-gradient(circle at top,#0b1f3a,#000814);
   color:#fff;
-  overflow:hidden;
 }
 
-/* BACKGROUND GLOW */
-.bg-glow{
-  position:fixed; inset:-20%;
-  background:
-    radial-gradient(60% 30% at 10% 10%, rgba(0,234,255,.15), transparent 60%),
-    radial-gradient(50% 30% at 90% 20%, rgba(124,124,255,.12), transparent 60%),
-    radial-gradient(40% 30% at 50% 90%, rgba(0,255,179,.12), transparent 60%);
-  animation:pulse 10s ease-in-out infinite alternate;
-  pointer-events:none;
+/* COMMON */
+.page{
+  display:none;
+  min-height:100vh;
+  padding:25px 20px;
 }
-@keyframes pulse{to{filter:brightness(1.15)}}
+.page.active{display:block}
 
-/* APP */
-.app{height:100vh; position:relative}
+.center{text-align:center}
 
-/* SCREENS */
-.screen{
-  position:absolute; inset:0;
-  padding:28px 20px;
-  transform:translateX(100%);
-  transition:.35s ease;
+/* HEADER */
+.logo{
+  width:90px;height:90px;
+  border-radius:50%;
+  margin:auto;
+  background:linear-gradient(135deg,#00ffd5,#00aaff);
+  padding:5px;
+  box-shadow:0 0 30px rgba(0,255,213,.7);
 }
-.screen.active{transform:translateX(0)}
-.screen.exit{transform:translateX(-100%)}
+.logo img{
+  width:100%;height:100%;
+  border-radius:50%;
+  background:#000;
+}
+h1{margin:15px 0 5px;letter-spacing:2px}
+.sub{color:#9fdcff;font-size:14px}
 
-h1,h2{text-align:center; letter-spacing:2px}
-.subtitle{text-align:center;color:#9be7ff;margin-bottom:26px}
-
-/* NEON BUTTON */
+/* BUTTON */
 .btn{
-  display:block; width:100%; max-width:330px;
-  margin:14px auto; padding:18px;
-  border:none; border-radius:18px;
-  font-size:18px; font-weight:900; color:#001018;
-  background:linear-gradient(135deg,var(--neon1),var(--neon2));
-  box-shadow:
-    0 0 0 rgba(0,0,0,0),
-    0 10px 30px rgba(0,180,255,.35);
-  transition:.18s;
+  width:100%;
+  padding:18px;
+  margin:14px 0;
+  border-radius:16px;
+  font-size:18px;
+  font-weight:bold;
+  border:none;
+  color:#000;
+  background:linear-gradient(135deg,#00ffd5,#00aaff);
+  box-shadow:0 0 25px rgba(0,255,213,.6);
 }
-.btn:active{transform:scale(.97)}
-.btn.primary{
-  background:linear-gradient(135deg,var(--neon3),var(--neon1));
-  box-shadow:0 0 35px rgba(0,255,179,.85);
+.btn.dark{
+  background:#0b1f3a;
+  color:#fff;
+  box-shadow:none;
 }
 
 /* POSTER */
-.poster img{
-  width:100%; max-width:420px; display:block;
-  margin:18px auto; border-radius:20px;
-  box-shadow:0 0 45px rgba(0,180,255,.45);
+.poster{
+  width:100%;
+  max-width:420px;
+  border-radius:18px;
+  margin:20px auto;
+  box-shadow:0 0 30px rgba(0,160,255,.6);
 }
 
 /* NOTE */
 .note{
-  text-align:center; color:#cce8ff; line-height:1.8; margin-top:10px
+  margin-top:15px;
+  font-size:14px;
+  color:#d6f5ff;
 }
+.note div{margin:6px 0}
 
-/* ACTION */
-.actions a,.actions button{
-  display:block; width:100%; max-width:300px;
-  margin:12px auto; padding:16px;
-  border-radius:999px; border:none; font-weight:900;
-}
-.order{background:#22c55e;color:#001a0f}
-.back{
-  background:transparent; color:#e6f6ff;
-  border:1px solid rgba(0,234,255,.35)
+/* WHATSAPP */
+.whatsapp{
+  background:#25D366;
+  color:#000;
+  margin-top:20px;
+  box-shadow:0 0 25px rgba(37,211,102,.6);
 }
 </style>
 </head>
 
 <body>
-<div class="bg-glow"></div>
-
-<div class="app">
 
 <!-- HOME -->
-<div id="home" class="screen active">
+<div id="home" class="page active center">
+  <div class="logo">
+    <img src="logo.png">
+  </div>
+
   <h1>KALZ STORE</h1>
-  <div class="subtitle">Pilih platform</div>
+  <div class="sub">Boost Sosial Media Automatik & Trusted</div>
 
-  <button class="btn primary" onclick="openMenu('tiktok')">TikTok</button>
-  <button class="btn" onclick="openMenu('instagram')">Instagram</button>
-  <button class="btn" onclick="openMenu('facebook')">Facebook</button>
+  <button class="btn" onclick="openPage('tiktok')">TikTok</button>
+  <button class="btn" onclick="openPage('instagram')">Instagram</button>
+  <button class="btn" onclick="openPage('facebook')">Facebook</button>
 </div>
 
-<!-- MENU -->
-<div id="menu" class="screen">
-  <h2 id="menuTitle"></h2>
-  <div id="menuBtns"></div>
-  <button class="btn back" onclick="backHome()">⬅ Kembali</button>
+<!-- TIKTOK -->
+<div id="tiktok" class="page center">
+  <h1>TikTok</h1>
+  <button class="btn" onclick="openService('followers','followers.jpg')">Followers</button>
+  <button class="btn" onclick="openService('likes','like.jpg')">Likes</button>
+  <button class="btn" onclick="openService('views','view.jpg')">Views</button>
+  <button class="btn" onclick="openService('share','share.jpg')">Share</button>
+  <button class="btn" onclick="openService('save','save.jpg')">Save</button>
+  <button class="btn dark" onclick="goHome()">← Kembali</button>
 </div>
 
-<!-- SERVICE -->
-<div id="service" class="screen">
-  <h2 id="serviceTitle"></h2>
-  <div class="poster"><img id="poster"></div>
+<!-- INSTAGRAM -->
+<div id="instagram" class="page center">
+  <h1>Instagram</h1>
+  <button class="btn">Followers</button>
+  <button class="btn">Likes</button>
+  <button class="btn">Views</button>
+  <button class="btn dark" onclick="goHome()">← Kembali</button>
+</div>
+
+<!-- FACEBOOK -->
+<div id="facebook" class="page center">
+  <h1>Facebook</h1>
+  <button class="btn">Followers Page / Profil</button>
+  <button class="btn">Like Post</button>
+  <button class="btn">View Post</button>
+  <button class="btn dark" onclick="goHome()">← Kembali</button>
+</div>
+
+<!-- SERVICE VIEW -->
+<div id="service" class="page center">
+  <h1 id="serviceTitle"></h1>
+
+  <img id="servicePoster" class="poster">
 
   <div class="note">
-    ✔ Akaun mesti <b>PUBLIC</b><br>
-    ✔ Proses 1–30 min (Max 48 jam)<br>
-    ✔ 30 Hari Warranty (Refill jika drop)
+    <div>✔ Akaun mesti PUBLIC</div>
+    <div>✔ Proses 1–30 min (Max 48 jam)</div>
+    <div>✔ Refill jika drop</div>
   </div>
 
-  <div class="actions">
-    <a id="wa" class="order" target="_blank">ORDER VIA WHATSAPP</a>
-    <button class="back" onclick="backMenu()">⬅ Kembali</button>
-  </div>
-</div>
+  <a id="waLink">
+    <button class="btn whatsapp">ORDER VIA WHATSAPP</button>
+  </a>
 
+  <button class="btn dark" onclick="back()">← Kembali</button>
 </div>
 
 <script>
-/* DATA */
-const data={
- tiktok:[
-  ['Followers','tiktok_followers.jpg'],
-  ['Likes','tiktok_likes.jpg'],
-  ['Views','tiktok_views.jpg'],
-  ['Share','tiktok_share.jpg'],
-  ['Save','tiktok_save.jpg']
- ],
- instagram:[
-  ['Followers','ig_followers.jpg'],
-  ['Likes','ig_likes.jpg'],
-  ['Views','ig_views.jpg']
- ],
- facebook:[
-  ['Followers Page / Profil','fb_followers.jpg'],
-  ['Like Post','fb_likes.jpg'],
-  ['View Post','fb_views.jpg']
- ]
-};
+let lastPage='home';
 
-/* PRELOAD */
-Object.values(data).flat().forEach(i=>{
- const img=new Image(); img.src=i[1];
-});
-
-let platform='';
-
-function openMenu(p){
- platform=p;
- home.classList.add('exit');
- menu.classList.add('active');
- menuTitle.innerText=p.toUpperCase();
- menuBtns.innerHTML='';
- data[p].forEach(s=>{
-  menuBtns.innerHTML+=
-   `<button class="btn" onclick="openService('${s[0]}','${s[1]}')">${s[0]}</button>`;
- });
+function openPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  lastPage='home';
 }
 
 function openService(name,img){
- menu.classList.add('exit');
- service.classList.add('active');
- serviceTitle.innerText=name;
- poster.src=img;
- wa.href=`https://wa.me/60197554127?text=Hi%20nak%20order%20${name}`;
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('service').classList.add('active');
+
+  document.getElementById('serviceTitle').innerText=name.toUpperCase()+" BOOST";
+  document.getElementById('servicePoster').src=img;
+  document.getElementById('waLink').href=
+    "https://wa.me/60197554127?text=Hi%20nak%20order%20"+name;
+
+  lastPage=document.querySelector('.page.active')?.id||'tiktok';
 }
 
-function backHome(){
- menu.classList.remove('active','exit');
- home.classList.remove('exit');
+function back(){
+  document.getElementById('service').classList.remove('active');
+  document.getElementById('tiktok').classList.add('active');
 }
 
-function backMenu(){
- service.classList.remove('active');
- menu.classList.remove('exit');
+function goHome(){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('home').classList.add('active');
 }
 </script>
 
