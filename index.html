@@ -14,141 +14,121 @@ body{
   text-align:center;
 }
 
-h1{margin-top:30px;letter-spacing:2px}
-.subtitle{color:#8bd3ff;margin-bottom:25px}
+/* SCREEN */
+.screen{
+  display:none;
+  min-height:100vh;
+  padding:30px 20px;
+}
+.screen.active{display:block}
 
 /* MENU */
-.menu-vertical{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-  max-width:300px;
-  margin:0 auto 20px;
-}
-
-.menu-vertical button{
-  background:linear-gradient(135deg,#0f4cff,#00d4ff);
-  border:none;
-  padding:16px;
-  color:#fff;
-  font-weight:800;
-  border-radius:16px;
-  cursor:pointer;
-  font-size:17px;
-  box-shadow:0 10px 25px rgba(0,140,255,.35);
-  transition:.25s;
-}
-
-.menu-vertical button.active{
-  background:linear-gradient(135deg,#00ffd5,#00aaff);
-  box-shadow:0 0 30px rgba(0,255,213,.8);
-  transform:scale(1.03);
-}
-
-/* POSTER ANIMATION */
-.poster{
-  display:none;
-  margin:35px auto;
-  opacity:0;
-  transform:translateY(40px);
-  transition:all .45s ease;
-}
-
-.poster.show{
+.menu button{
   display:block;
+  width:100%;
+  max-width:320px;
+  margin:14px auto;
+  padding:18px;
+  border:none;
+  border-radius:18px;
+  font-size:18px;
+  font-weight:800;
+  color:#fff;
+  background:linear-gradient(135deg,#0f4cff,#00d4ff);
+  box-shadow:0 10px 25px rgba(0,140,255,.35);
 }
 
-.poster.active{
-  opacity:1;
-  transform:translateY(0);
-}
-
+/* POSTER */
 .poster img{
   width:100%;
   max-width:420px;
   border-radius:20px;
   box-shadow:0 0 40px rgba(0,150,255,.4);
+  margin:20px auto;
 }
 
 /* NOTE */
 .note{
-  margin-top:20px;
-  font-size:14px;
-  line-height:1.8;
+  margin:15px 0;
   color:#cce8ff;
+  line-height:1.8;
 }
 
-/* WHATSAPP */
-.whatsapp{
-  margin:30px auto 45px;
+/* BUTTON */
+.action{
+  margin-top:25px;
 }
-
-.whatsapp a{
-  background:#22c55e;
-  padding:17px 30px;
-  color:#000;
-  font-weight:900;
+.action a, .action button{
+  display:block;
+  margin:12px auto;
+  padding:16px;
+  width:100%;
+  max-width:300px;
   border-radius:999px;
+  border:none;
+  font-weight:900;
   text-decoration:none;
-  box-shadow:0 10px 30px rgba(34,197,94,.55);
 }
+
+.order{background:#22c55e;color:#000}
+.back{background:#0f172a;color:#fff;border:1px solid #1e3a8a}
 </style>
 </head>
 
 <body>
 
-<h1>KALZ STORE</h1>
-<div class="subtitle">Pilih servis & terus order</div>
+<!-- MAIN MENU -->
+<div id="menu" class="screen active">
+  <h1>KALZ STORE</h1>
+  <p style="color:#8bd3ff">Pilih servis & terus order</p>
 
-<div class="menu-vertical">
-  <button onclick="showService('followers',this)">Followers</button>
-  <button onclick="showService('likes',this)">Likes</button>
-  <button onclick="showService('views',this)">Views</button>
-  <button onclick="showService('share',this)">Share</button>
-  <button onclick="showService('save',this)">Save</button>
+  <div class="menu">
+    <button onclick="openService('followers')">Followers</button>
+    <button onclick="openService('likes')">Likes</button>
+    <button onclick="openService('views')">Views</button>
+    <button onclick="openService('share')">Share</button>
+    <button onclick="openService('save')">Save</button>
+  </div>
 </div>
 
-<!-- POSTERS -->
-<div id="followers" class="poster"><img src="followers.jpg"></div>
-<div id="likes" class="poster"><img src="like.jpg"></div>
-<div id="views" class="poster"><img src="view.jpg"></div>
-<div id="share" class="poster"><img src="share.jpg"></div>
-<div id="save" class="poster"><img src="save.jpg"></div>
+<!-- SERVICE SCREEN -->
+<div id="service" class="screen">
+  <h2 id="serviceTitle"></h2>
 
-<div class="note">
-✔ Akaun mesti <b>PUBLIC</b><br>
-✔ Proses 1–30 min (Max 48 jam)<br>
-✔ 30 Hari Warranty (Refill jika drop)
-</div>
+  <div class="poster">
+    <img id="serviceImg">
+  </div>
 
-<div class="whatsapp">
-  <a id="waBtn" href="https://wa.me/60197554127" target="_blank">
-    ORDER VIA WHATSAPP
-  </a>
+  <div class="note">
+    ✔ Akaun mesti <b>PUBLIC</b><br>
+    ✔ Proses 1–30 min (Max 48 jam)<br>
+    ✔ 30 Hari Warranty (Refill jika drop)
+  </div>
+
+  <div class="action">
+    <a id="waLink" class="order" target="_blank">ORDER VIA WHATSAPP</a>
+    <button class="back" onclick="goBack()">⬅ KEMBALI</button>
+  </div>
 </div>
 
 <script>
-function showService(id,btn){
-  const posters=document.querySelectorAll('.poster');
-  const buttons=document.querySelectorAll('.menu-vertical button');
+function openService(type){
+  document.getElementById('menu').classList.remove('active');
+  document.getElementById('service').classList.add('active');
 
-  posters.forEach(p=>{
-    p.classList.remove('active');
-    setTimeout(()=>p.classList.remove('show'),200);
-  });
+  document.getElementById('serviceTitle').innerText =
+    type.toUpperCase()+" BOOST";
 
-  buttons.forEach(b=>b.classList.remove('active'));
+  document.getElementById('serviceImg').src =
+    type+".jpg";
 
-  const el=document.getElementById(id);
-  el.classList.add('show');
-  setTimeout(()=>el.classList.add('active'),50);
+  document.getElementById('waLink').href =
+   "https://wa.me/60197554127?text=Hi%20nak%20order%20"+type;
+}
 
-  btn.classList.add('active');
-
-  el.scrollIntoView({behavior:'smooth',block:'start'});
-
-  document.getElementById('waBtn').href =
-   "https://wa.me/60197554127?text=Hi%20nak%20order%20"+id;
+function goBack(){
+  document.getElementById('service').classList.remove('active');
+  document.getElementById('menu').classList.add('active');
 }
 </script>
 
