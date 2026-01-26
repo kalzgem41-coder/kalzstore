@@ -10,18 +10,19 @@ body{
   margin:0;
   background:#050b14;
   color:#fff;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   text-align:center;
 }
 
 h1{
-  margin:20px 0 5px;
+  margin-top:25px;
   letter-spacing:2px;
 }
 
 .subtitle{
   color:#7aa8ff;
   font-size:14px;
+  margin-bottom:20px;
 }
 
 .menu{
@@ -29,25 +30,26 @@ h1{
   flex-wrap:wrap;
   justify-content:center;
   gap:10px;
-  margin:20px;
+  margin:0 15px 20px;
 }
 
 .menu button{
   background:linear-gradient(135deg,#0f4cff,#00d4ff);
   border:none;
-  padding:12px 16px;
+  padding:12px 18px;
   color:#fff;
   font-weight:bold;
-  border-radius:10px;
+  border-radius:12px;
   cursor:pointer;
 }
 
-.menu button:hover{
-  transform:scale(1.05);
+.menu button:active{
+  transform:scale(0.95);
 }
 
 .poster{
   display:none;
+  justify-content:center;
   margin:20px auto;
   max-width:420px;
 }
@@ -55,22 +57,23 @@ h1{
 .poster img{
   width:100%;
   border-radius:16px;
-  box-shadow:0 0 20px #0f4cff;
+  box-shadow:0 0 25px #0f4cff;
 }
 
 .note{
   font-size:13px;
   color:#cbd5ff;
   margin:15px;
+  line-height:1.6;
 }
 
 .order-btn{
   display:inline-block;
-  margin:15px auto 30px;
+  margin:15px auto 35px;
   background:#25D366;
   color:#000;
-  padding:14px 24px;
-  border-radius:30px;
+  padding:15px 26px;
+  border-radius:40px;
   font-weight:bold;
   text-decoration:none;
 }
@@ -78,8 +81,11 @@ h1{
 
 <script>
 function showService(id, wa){
-  document.querySelectorAll('.poster').forEach(p=>p.style.display="none");
-  document.getElementById(id).style.display="block";
+  document.querySelectorAll('.poster').forEach(p=>{
+    p.style.display="none";
+  });
+
+  document.getElementById(id).style.display="flex";
   document.getElementById("order").href = wa;
 }
 </script>
@@ -89,11 +95,14 @@ function showService(id, wa){
 
 <h1>KALZ STORE</h1>
 <div class="subtitle">Pilih servis & terus order</div>
-<button onclick="showService('followers','https://wa.me/60197554127?text=Hi%20nak%20order%20Followers')">Followers</button>
-<button onclick="showService('likes','https://wa.me/60197554127?text=Hi%20nak%20order%20Likes')">Likes</button>
-<button onclick="showService('views','https://wa.me/60197554127?text=Hi%20nak%20order%20Views')">Views</button>
-<button onclick="showService('share','https://wa.me/60197554127?text=Hi%20nak%20order%20Share')">Share</button>
-<button onclick="showService('save','https://wa.me/60197554127?text=Hi%20nak%20order%20Save')">Save</button>
+
+<div class="menu">
+  <button onclick="showService('followers','https://wa.me/60197554127?text=Hi%20nak%20order%20Followers')">Followers</button>
+  <button onclick="showService('likes','https://wa.me/60197554127?text=Hi%20nak%20order%20Likes')">Likes</button>
+  <button onclick="showService('views','https://wa.me/60197554127?text=Hi%20nak%20order%20Views')">Views</button>
+  <button onclick="showService('share','https://wa.me/60197554127?text=Hi%20nak%20order%20Share')">Share</button>
+  <button onclick="showService('save','https://wa.me/60197554127?text=Hi%20nak%20order%20Save')">Save</button>
+</div>
 
 <!-- POSTERS -->
 <div id="followers" class="poster"><img src="followers.jpg"></div>
@@ -103,7 +112,7 @@ function showService(id, wa){
 <div id="save" class="poster"><img src="save.jpg"></div>
 
 <div class="note">
-✔ Akaun mesti PUBLIC<br>
+✔ Akaun mesti <b>PUBLIC</b><br>
 ✔ Proses 1–30 min (Max 48 jam)<br>
 ✔ 30 Hari Warranty (Refill jika drop)
 </div>
