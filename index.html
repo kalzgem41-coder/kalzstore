@@ -14,12 +14,7 @@ body{
   color:#fff;
   overflow:hidden;
 }
-
-.app{
-  height:100vh;
-  position:relative;
-  overflow:hidden;
-}
+.app{height:100vh;position:relative}
 
 /* SCREEN */
 .screen{
@@ -33,15 +28,15 @@ body{
 .screen.active{transform:translateX(0)}
 .screen.exit{transform:translateX(-100%)}
 
-/* MENU */
 h1,h2{text-align:center}
-.subtitle{text-align:center;color:#8bd3ff;margin-bottom:30px}
+.subtitle{text-align:center;color:#8bd3ff;margin-bottom:25px}
 
-.menu button{
+/* BUTTON */
+.btn{
   display:block;
   width:100%;
   max-width:320px;
-  margin:14px auto;
+  margin:12px auto;
   padding:18px;
   border:none;
   border-radius:18px;
@@ -52,71 +47,59 @@ h1,h2{text-align:center}
   box-shadow:0 10px 25px rgba(0,140,255,.35);
 }
 
-/* POSTER */
 .poster img{
   width:100%;
   max-width:420px;
-  border-radius:20px;
-  display:block;
   margin:20px auto;
+  display:block;
+  border-radius:20px;
   box-shadow:0 0 40px rgba(0,150,255,.45);
 }
 
-/* NOTE */
 .note{
   text-align:center;
   color:#cce8ff;
   line-height:1.8;
-  margin-top:15px;
 }
 
-/* ACTION */
-.actions{
-  margin-top:30px;
-}
-.actions a,.actions button{
+.action a,.action button{
   display:block;
+  margin:12px auto;
   width:100%;
   max-width:300px;
-  margin:12px auto;
   padding:16px;
   border-radius:999px;
   border:none;
   font-weight:900;
-  text-decoration:none;
-  text-align:center;
 }
-
 .order{background:#22c55e;color:#000}
 .back{background:#0f172a;color:#fff;border:1px solid #1e3a8a}
 </style>
 </head>
 
 <body>
-
 <div class="app">
 
 <!-- HOME -->
 <div id="home" class="screen active">
   <h1>KALZ STORE</h1>
-  <div class="subtitle">Pilih servis & terus order</div>
+  <div class="subtitle">Pilih platform</div>
+  <button class="btn" onclick="openMenu('tiktok')">TikTok</button>
+  <button class="btn" onclick="openMenu('instagram')">Instagram</button>
+  <button class="btn" onclick="openMenu('facebook')">Facebook</button>
+</div>
 
-  <div class="menu">
-    <button onclick="openService('Followers')">Followers</button>
-    <button onclick="openService('Likes')">Likes</button>
-    <button onclick="openService('Views')">Views</button>
-    <button onclick="openService('Share')">Share</button>
-    <button onclick="openService('Save')">Save</button>
-  </div>
+<!-- MENU -->
+<div id="menu" class="screen">
+  <h2 id="menuTitle"></h2>
+  <div id="menuBtns"></div>
+  <button class="btn back" onclick="backToHome()">⬅ Kembali</button>
 </div>
 
 <!-- SERVICE -->
 <div id="service" class="screen">
-  <h2 id="title"></h2>
-
-  <div class="poster">
-    <img id="posterImg">
-  </div>
+  <h2 id="serviceTitle"></h2>
+  <div class="poster"><img id="poster"></div>
 
   <div class="note">
     ✔ Akaun mesti <b>PUBLIC</b><br>
@@ -124,39 +107,65 @@ h1,h2{text-align:center}
     ✔ 30 Hari Warranty (Refill jika drop)
   </div>
 
-  <div class="actions">
+  <div class="action">
     <a id="wa" class="order" target="_blank">ORDER VIA WHATSAPP</a>
-    <button class="back" onclick="back()">⬅ KEMBALI</button>
+    <button class="back" onclick="backToMenu()">⬅ Kembali</button>
   </div>
 </div>
 
 </div>
 
 <script>
-/* PRELOAD IMAGES */
-const images = {};
-['followers','likes','views','share','save'].forEach(i=>{
-  const img=new Image();
-  img.src=i+'.jpg';
-  images[i]=img;
-});
+const data={
+ tiktok:[
+  ['Followers','tiktok_followers.jpg'],
+  ['Likes','tiktok_likes.jpg'],
+  ['Views','tiktok_views.jpg'],
+  ['Share','tiktok_share.jpg'],
+  ['Save','tiktok_save.jpg']
+ ],
+ instagram:[
+  ['Followers','ig_followers.jpg'],
+  ['Likes','ig_likes.jpg'],
+  ['Views','ig_views.jpg']
+ ],
+ facebook:[
+  ['Followers Page / Profil','fb_followers.jpg'],
+  ['Like Post','fb_likes.jpg'],
+  ['View Post','fb_views.jpg']
+ ]
+};
 
-function openService(name){
-  const key=name.toLowerCase();
+let currentPlatform='';
 
-  document.getElementById('home').classList.add('exit');
-  document.getElementById('service').classList.add('active');
-
-  document.getElementById('title').innerText=name+" BOOST";
-  document.getElementById('posterImg').src=images[key].src;
-
-  document.getElementById('wa').href=
-   "https://wa.me/60197554127?text=Hi%20nak%20order%20"+name;
+function openMenu(p){
+ currentPlatform=p;
+ home.classList.add('exit');
+ menu.classList.add('active');
+ menuTitle.innerText=p.toUpperCase();
+ menuBtns.innerHTML='';
+ data[p].forEach(s=>{
+  menuBtns.innerHTML+=
+   `<button class="btn" onclick="openService('${s[0]}','${s[1]}')">${s[0]}</button>`;
+ });
 }
 
-function back(){
-  document.getElementById('home').classList.remove('exit');
-  document.getElementById('service').classList.remove('active');
+function openService(name,img){
+ menu.classList.add('exit');
+ service.classList.add('active');
+ serviceTitle.innerText=name;
+ poster.src=img;
+ wa.href=`https://wa.me/60197554127?text=Hi%20nak%20order%20${name}`;
+}
+
+function backToHome(){
+ menu.classList.remove('active','exit');
+ home.classList.remove('exit');
+}
+
+function backToMenu(){
+ service.classList.remove('active');
+ menu.classList.remove('exit');
 }
 </script>
 
