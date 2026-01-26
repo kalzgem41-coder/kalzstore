@@ -10,69 +10,80 @@ body{
   margin:0;
   background:#050b14;
   color:#fff;
-  font-family: Arial, sans-serif;
+  font-family:Arial, sans-serif;
   text-align:center;
 }
 
+/* HEADER */
 h1{
-  margin-top:25px;
+  margin-top:24px;
   letter-spacing:2px;
 }
-
 .subtitle{
   color:#7aa8ff;
   font-size:14px;
-  margin-bottom:20px;
+  margin-bottom:22px;
 }
 
+/* MENU */
 .menu{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:10px;
-  margin:0 15px 20px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  max-width:360px;
+  margin:0 auto 28px;
 }
-
 .menu button{
   background:linear-gradient(135deg,#0f4cff,#00d4ff);
   border:none;
-  padding:12px 18px;
+  padding:14px 0;
   color:#fff;
-  font-weight:bold;
-  border-radius:12px;
+  font-weight:700;
+  border-radius:14px;
   cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,140,255,.35);
 }
-
 .menu button:active{
-  transform:scale(0.95);
+  transform:scale(.96);
+}
+.menu button.active{
+  background:linear-gradient(135deg,#00ffd5,#00aaff);
+  box-shadow:0 0 25px rgba(0,255,213,.8);
 }
 
+/* POSTER */
 .poster{
   display:none;
   justify-content:center;
   margin:20px auto;
   max-width:420px;
+  animation:fade .25s ease;
 }
-
 .poster img{
   width:100%;
   border-radius:16px;
-  box-shadow:0 0 25px #0f4cff;
+  box-shadow:0 0 28px #0f4cff;
+}
+@keyframes fade{
+  from{opacity:0;transform:scale(.98)}
+  to{opacity:1;transform:scale(1)}
 }
 
+/* NOTE */
 .note{
   font-size:13px;
   color:#cbd5ff;
-  margin:15px;
+  margin:18px;
   line-height:1.6;
 }
 
+/* ORDER */
 .order-btn{
   display:inline-block;
-  margin:15px auto 35px;
+  margin:18px auto 36px;
   background:#25D366;
   color:#000;
-  padding:15px 26px;
+  padding:16px 28px;
   border-radius:40px;
   font-weight:bold;
   text-decoration:none;
@@ -80,34 +91,57 @@ h1{
 </style>
 
 <script>
-function showService(id, wa){
-  document.querySelectorAll('.poster').forEach(p=>{
-    p.style.display="none";
-  });
+function showService(id, wa, btn){
+  document.querySelectorAll('.poster').forEach(p=>p.style.display="none");
+  document.querySelectorAll('.menu button').forEach(b=>b.classList.remove("active"));
 
   document.getElementById(id).style.display="flex";
+  btn.classList.add("active");
   document.getElementById("order").href = wa;
 }
-</script>
 
+window.onload = function(){
+  document.getElementById("btn-followers").click();
+}
+</script>
 </head>
+
 <body>
 
 <h1>KALZ STORE</h1>
 <div class="subtitle">Pilih servis & terus order</div>
 
 <div class="menu">
-  <button onclick="showService('followers','https://wa.me/60197554127?text=Hi%20nak%20order%20Followers')">Followers</button>
-  <button onclick="showService('likes','https://wa.me/60197554127?text=Hi%20nak%20order%20Likes')">Likes</button>
-  <button onclick="showService('views','https://wa.me/60197554127?text=Hi%20nak%20order%20Views')">Views</button>
-  <button onclick="showService('share','https://wa.me/60197554127?text=Hi%20nak%20order%20Share')">Share</button>
-  <button onclick="showService('save','https://wa.me/60197554127?text=Hi%20nak%20order%20Save')">Save</button>
+  <button id="btn-followers"
+    onclick="showService('followers','https://wa.me/60197554127?text=Hi%20nak%20order%20Followers',this)">
+    Followers
+  </button>
+
+  <button
+    onclick="showService('likes','https://wa.me/60197554127?text=Hi%20nak%20order%20Likes',this)">
+    Likes
+  </button>
+
+  <button
+    onclick="showService('views','https://wa.me/60197554127?text=Hi%20nak%20order%20Views',this)">
+    Views
+  </button>
+
+  <button
+    onclick="showService('share','https://wa.me/60197554127?text=Hi%20nak%20order%20Share',this)">
+    Share
+  </button>
+
+  <button
+    onclick="showService('save','https://wa.me/60197554127?text=Hi%20nak%20order%20Save',this)">
+    Save
+  </button>
 </div>
 
 <!-- POSTERS -->
 <div id="followers" class="poster"><img src="followers.jpg"></div>
-<div id="likes" class="poster"><img src="like.jpg"></div>
-<div id="views" class="poster"><img src="view.jpg"></div>
+<div id="likes" class="poster"><img src="likes.jpg"></div>
+<div id="views" class="poster"><img src="views.jpg"></div>
 <div id="share" class="poster"><img src="share.jpg"></div>
 <div id="save" class="poster"><img src="save.jpg"></div>
 
