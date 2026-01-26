@@ -14,53 +14,60 @@ body{
   text-align:center;
 }
 
-h1{
-  margin-top:30px;
-  letter-spacing:2px;
-}
+h1{margin-top:30px;letter-spacing:2px}
+.subtitle{color:#8bd3ff;margin-bottom:25px}
 
-.subtitle{
-  color:#8bd3ff;
-  margin-bottom:25px;
-}
-
-/* MENU VERTICAL */
+/* MENU */
 .menu-vertical{
   display:flex;
   flex-direction:column;
-  gap:12px;
-  max-width:280px;
-  margin:0 auto 25px;
+  gap:14px;
+  max-width:300px;
+  margin:0 auto 20px;
 }
 
 .menu-vertical button{
   background:linear-gradient(135deg,#0f4cff,#00d4ff);
   border:none;
-  padding:15px;
+  padding:16px;
   color:#fff;
-  font-weight:700;
-  border-radius:14px;
+  font-weight:800;
+  border-radius:16px;
   cursor:pointer;
-  font-size:16px;
-  box-shadow:0 8px 20px rgba(0,140,255,.35);
+  font-size:17px;
+  box-shadow:0 10px 25px rgba(0,140,255,.35);
+  transition:.25s;
 }
 
 .menu-vertical button.active{
   background:linear-gradient(135deg,#00ffd5,#00aaff);
-  box-shadow:0 0 25px rgba(0,255,213,.8);
+  box-shadow:0 0 30px rgba(0,255,213,.8);
+  transform:scale(1.03);
 }
 
-/* POSTER */
+/* POSTER ANIMATION */
 .poster{
   display:none;
-  margin:25px auto;
+  margin:35px auto;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .45s ease;
+}
+
+.poster.show{
+  display:block;
+}
+
+.poster.active{
+  opacity:1;
+  transform:translateY(0);
 }
 
 .poster img{
   width:100%;
   max-width:420px;
-  border-radius:18px;
-  box-shadow:0 0 35px rgba(0,150,255,.35);
+  border-radius:20px;
+  box-shadow:0 0 40px rgba(0,150,255,.4);
 }
 
 /* NOTE */
@@ -73,18 +80,17 @@ h1{
 
 /* WHATSAPP */
 .whatsapp{
-  margin:25px auto 40px;
+  margin:30px auto 45px;
 }
 
 .whatsapp a{
   background:#22c55e;
-  padding:16px 28px;
+  padding:17px 30px;
   color:#000;
-  font-weight:800;
+  font-weight:900;
   border-radius:999px;
   text-decoration:none;
-  display:inline-block;
-  box-shadow:0 10px 30px rgba(34,197,94,.5);
+  box-shadow:0 10px 30px rgba(34,197,94,.55);
 }
 </style>
 </head>
@@ -103,30 +109,16 @@ h1{
 </div>
 
 <!-- POSTERS -->
-<div id="followers" class="poster">
-  <img src="followers.jpg">
-</div>
-
-<div id="likes" class="poster">
-  <img src="like.jpg">
-</div>
-
-<div id="views" class="poster">
-  <img src="view.jpg">
-</div>
-
-<div id="share" class="poster">
-  <img src="share.jpg">
-</div>
-
-<div id="save" class="poster">
-  <img src="save.jpg">
-</div>
+<div id="followers" class="poster"><img src="followers.jpg"></div>
+<div id="likes" class="poster"><img src="like.jpg"></div>
+<div id="views" class="poster"><img src="view.jpg"></div>
+<div id="share" class="poster"><img src="share.jpg"></div>
+<div id="save" class="poster"><img src="save.jpg"></div>
 
 <div class="note">
-  ✔ Akaun mesti <b>PUBLIC</b><br>
-  ✔ Proses 1–30 min (Max 48 jam)<br>
-  ✔ 30 Hari Warranty (Refill jika drop)
+✔ Akaun mesti <b>PUBLIC</b><br>
+✔ Proses 1–30 min (Max 48 jam)<br>
+✔ 30 Hari Warranty (Refill jika drop)
 </div>
 
 <div class="whatsapp">
@@ -137,14 +129,26 @@ h1{
 
 <script>
 function showService(id,btn){
-  document.querySelectorAll('.poster').forEach(p=>p.style.display='none');
-  document.querySelectorAll('.menu-vertical button').forEach(b=>b.classList.remove('active'));
+  const posters=document.querySelectorAll('.poster');
+  const buttons=document.querySelectorAll('.menu-vertical button');
 
-  document.getElementById(id).style.display='block';
+  posters.forEach(p=>{
+    p.classList.remove('active');
+    setTimeout(()=>p.classList.remove('show'),200);
+  });
+
+  buttons.forEach(b=>b.classList.remove('active'));
+
+  const el=document.getElementById(id);
+  el.classList.add('show');
+  setTimeout(()=>el.classList.add('active'),50);
+
   btn.classList.add('active');
 
+  el.scrollIntoView({behavior:'smooth',block:'start'});
+
   document.getElementById('waBtn').href =
-    "https://wa.me/60197554127?text=Hi%20nak%20order%20"+id;
+   "https://wa.me/60197554127?text=Hi%20nak%20order%20"+id;
 }
 </script>
 
