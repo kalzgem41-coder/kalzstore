@@ -6,85 +6,106 @@
 <title>KALZ STORE</title>
 
 <style>
+:root{
+  --neon1:#00eaff;
+  --neon2:#7c7cff;
+  --neon3:#00ffb3;
+  --bg1:#020617;
+  --bg2:#050b1a;
+}
+
 *{box-sizing:border-box}
 body{
   margin:0;
   font-family:Arial,Helvetica,sans-serif;
-  background:#020617;
+  background:linear-gradient(180deg,var(--bg2),var(--bg1));
   color:#fff;
   overflow:hidden;
 }
-.app{height:100vh;position:relative}
 
-/* SCREEN */
+/* BACKGROUND GLOW */
+.bg-glow{
+  position:fixed; inset:-20%;
+  background:
+    radial-gradient(60% 30% at 10% 10%, rgba(0,234,255,.15), transparent 60%),
+    radial-gradient(50% 30% at 90% 20%, rgba(124,124,255,.12), transparent 60%),
+    radial-gradient(40% 30% at 50% 90%, rgba(0,255,179,.12), transparent 60%);
+  animation:pulse 10s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+@keyframes pulse{to{filter:brightness(1.15)}}
+
+/* APP */
+.app{height:100vh; position:relative}
+
+/* SCREENS */
 .screen{
-  position:absolute;
-  inset:0;
-  padding:30px 20px;
-  background:linear-gradient(180deg,#050b1a,#020617);
+  position:absolute; inset:0;
+  padding:28px 20px;
   transform:translateX(100%);
   transition:.35s ease;
 }
 .screen.active{transform:translateX(0)}
 .screen.exit{transform:translateX(-100%)}
 
-h1,h2{text-align:center}
-.subtitle{text-align:center;color:#8bd3ff;margin-bottom:25px}
+h1,h2{text-align:center; letter-spacing:2px}
+.subtitle{text-align:center;color:#9be7ff;margin-bottom:26px}
 
-/* BUTTON */
+/* NEON BUTTON */
 .btn{
-  display:block;
-  width:100%;
-  max-width:320px;
-  margin:12px auto;
-  padding:18px;
-  border:none;
-  border-radius:18px;
-  font-size:18px;
-  font-weight:800;
-  color:#fff;
-  background:linear-gradient(135deg,#0f4cff,#00d4ff);
-  box-shadow:0 10px 25px rgba(0,140,255,.35);
+  display:block; width:100%; max-width:330px;
+  margin:14px auto; padding:18px;
+  border:none; border-radius:18px;
+  font-size:18px; font-weight:900; color:#001018;
+  background:linear-gradient(135deg,var(--neon1),var(--neon2));
+  box-shadow:
+    0 0 0 rgba(0,0,0,0),
+    0 10px 30px rgba(0,180,255,.35);
+  transition:.18s;
+}
+.btn:active{transform:scale(.97)}
+.btn.primary{
+  background:linear-gradient(135deg,var(--neon3),var(--neon1));
+  box-shadow:0 0 35px rgba(0,255,179,.85);
 }
 
+/* POSTER */
 .poster img{
-  width:100%;
-  max-width:420px;
-  margin:20px auto;
-  display:block;
-  border-radius:20px;
-  box-shadow:0 0 40px rgba(0,150,255,.45);
+  width:100%; max-width:420px; display:block;
+  margin:18px auto; border-radius:20px;
+  box-shadow:0 0 45px rgba(0,180,255,.45);
 }
 
+/* NOTE */
 .note{
-  text-align:center;
-  color:#cce8ff;
-  line-height:1.8;
+  text-align:center; color:#cce8ff; line-height:1.8; margin-top:10px
 }
 
-.action a,.action button{
-  display:block;
-  margin:12px auto;
-  width:100%;
-  max-width:300px;
-  padding:16px;
-  border-radius:999px;
-  border:none;
-  font-weight:900;
+/* ACTION */
+.actions a,.actions button{
+  display:block; width:100%; max-width:300px;
+  margin:12px auto; padding:16px;
+  border-radius:999px; border:none; font-weight:900;
 }
-.order{background:#22c55e;color:#000}
-.back{background:#0f172a;color:#fff;border:1px solid #1e3a8a}
+.order{background:#22c55e;color:#001a0f}
+.back{
+  background:transparent; color:#e6f6ff;
+  border:1px solid rgba(0,234,255,.35)
+}
 </style>
 </head>
 
 <body>
+<div class="bg-glow"></div>
+
 <div class="app">
 
 <!-- HOME -->
 <div id="home" class="screen active">
   <h1>KALZ STORE</h1>
   <div class="subtitle">Pilih platform</div>
-  <button class="btn" onclick="openMenu('tiktok')">TikTok</button>
+
+  <button class="btn primary" onclick="openMenu('tiktok')">TikTok</button>
   <button class="btn" onclick="openMenu('instagram')">Instagram</button>
   <button class="btn" onclick="openMenu('facebook')">Facebook</button>
 </div>
@@ -93,7 +114,7 @@ h1,h2{text-align:center}
 <div id="menu" class="screen">
   <h2 id="menuTitle"></h2>
   <div id="menuBtns"></div>
-  <button class="btn back" onclick="backToHome()">⬅ Kembali</button>
+  <button class="btn back" onclick="backHome()">⬅ Kembali</button>
 </div>
 
 <!-- SERVICE -->
@@ -107,15 +128,16 @@ h1,h2{text-align:center}
     ✔ 30 Hari Warranty (Refill jika drop)
   </div>
 
-  <div class="action">
+  <div class="actions">
     <a id="wa" class="order" target="_blank">ORDER VIA WHATSAPP</a>
-    <button class="back" onclick="backToMenu()">⬅ Kembali</button>
+    <button class="back" onclick="backMenu()">⬅ Kembali</button>
   </div>
 </div>
 
 </div>
 
 <script>
+/* DATA */
 const data={
  tiktok:[
   ['Followers','tiktok_followers.jpg'],
@@ -136,10 +158,15 @@ const data={
  ]
 };
 
-let currentPlatform='';
+/* PRELOAD */
+Object.values(data).flat().forEach(i=>{
+ const img=new Image(); img.src=i[1];
+});
+
+let platform='';
 
 function openMenu(p){
- currentPlatform=p;
+ platform=p;
  home.classList.add('exit');
  menu.classList.add('active');
  menuTitle.innerText=p.toUpperCase();
@@ -158,12 +185,12 @@ function openService(name,img){
  wa.href=`https://wa.me/60197554127?text=Hi%20nak%20order%20${name}`;
 }
 
-function backToHome(){
+function backHome(){
  menu.classList.remove('active','exit');
  home.classList.remove('exit');
 }
 
-function backToMenu(){
+function backMenu(){
  service.classList.remove('active');
  menu.classList.remove('exit');
 }
