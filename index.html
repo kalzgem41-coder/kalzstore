@@ -9,11 +9,9 @@
 *{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
 body{
   margin:0;
-  background:radial-gradient(circle at top,#0b1f3a,#000814);
+  background:radial-gradient(circle at top,#061b33,#000814);
   color:#fff;
 }
-
-/* COMMON */
 .page{
   display:none;
   min-height:100vh;
@@ -23,65 +21,44 @@ body{
 
 .center{text-align:center}
 
-/* HEADER */
 .logo{
-  width:90px;height:90px;
-  border-radius:50%;
+  width:90px;height:90px;border-radius:50%;
   margin:auto;
-  background:linear-gradient(135deg,#00ffd5,#00aaff);
-  padding:5px;
-  box-shadow:0 0 30px rgba(0,255,213,.7);
-}
-.logo img{
-  width:100%;height:100%;
-  border-radius:50%;
-  background:#000;
+  box-shadow:0 0 25px #00ffd5;
 }
 h1{margin:15px 0 5px;letter-spacing:2px}
-.sub{color:#9fdcff;font-size:14px}
+.subtitle{color:#9adfff;font-size:14px;margin-bottom:20px}
 
-/* BUTTON */
 .btn{
   width:100%;
-  padding:18px;
-  margin:14px 0;
+  padding:16px;
+  margin:12px 0;
+  border:none;
   border-radius:16px;
   font-size:18px;
   font-weight:bold;
-  border:none;
   color:#000;
   background:linear-gradient(135deg,#00ffd5,#00aaff);
-  box-shadow:0 0 25px rgba(0,255,213,.6);
+  box-shadow:0 0 20px rgba(0,255,213,.6);
 }
 .btn.dark{
-  background:#0b1f3a;
+  background:#111;
   color:#fff;
   box-shadow:none;
 }
-
-/* POSTER */
 .poster{
   width:100%;
   max-width:420px;
-  border-radius:18px;
-  margin:20px auto;
-  box-shadow:0 0 30px rgba(0,160,255,.6);
+  border-radius:20px;
+  box-shadow:0 0 25px rgba(0,170,255,.5);
+  margin:15px auto;
+  display:block;
 }
-
-/* NOTE */
-.note{
-  margin-top:15px;
-  font-size:14px;
-  color:#d6f5ff;
-}
-.note div{margin:6px 0}
-
-/* WHATSAPP */
-.whatsapp{
-  background:#25D366;
-  color:#000;
+.note{font-size:14px;color:#cfefff;margin-top:15px}
+.order{
   margin-top:20px;
-  box-shadow:0 0 25px rgba(37,211,102,.6);
+  background:#1ecf6b;
+  color:#000;
 }
 </style>
 </head>
@@ -90,12 +67,9 @@ h1{margin:15px 0 5px;letter-spacing:2px}
 
 <!-- HOME -->
 <div id="home" class="page active center">
-  <div class="logo">
-    <img src="logo.png">
-  </div>
-
+  <img src="logo.png" class="logo">
   <h1>KALZ STORE</h1>
-  <div class="sub">Boost Sosial Media Automatik & Trusted</div>
+  <div class="subtitle">Boost Sosial Media Automatik</div>
 
   <button class="btn" onclick="openPage('tiktok')">TikTok</button>
   <button class="btn" onclick="openPage('instagram')">Instagram</button>
@@ -105,49 +79,49 @@ h1{margin:15px 0 5px;letter-spacing:2px}
 <!-- TIKTOK -->
 <div id="tiktok" class="page center">
   <h1>TikTok</h1>
-  <button class="btn" onclick="openService('followers','followers.jpg')">Followers</button>
-  <button class="btn" onclick="openService('likes','like.jpg')">Likes</button>
-  <button class="btn" onclick="openService('views','view.jpg')">Views</button>
-  <button class="btn" onclick="openService('share','share.jpg')">Share</button>
-  <button class="btn" onclick="openService('save','save.jpg')">Save</button>
-  <button class="btn dark" onclick="goHome()">← Kembali</button>
+  <button class="btn" onclick="openService('TikTok Followers','tt_followers.jpg')">Followers</button>
+  <button class="btn" onclick="openService('TikTok Likes','tt_likes.jpg')">Likes</button>
+  <button class="btn" onclick="openService('TikTok Views','tt_views.jpg')">Views</button>
+  <button class="btn" onclick="openService('TikTok Share','tt_share.jpg')">Share</button>
+  <button class="btn" onclick="openService('TikTok Save','tt_save.jpg')">Save</button>
+  <button class="btn dark" onclick="openPage('home')">← Kembali</button>
 </div>
 
 <!-- INSTAGRAM -->
 <div id="instagram" class="page center">
   <h1>Instagram</h1>
-  <button class="btn">Followers</button>
-  <button class="btn">Likes</button>
-  <button class="btn">Views</button>
-  <button class="btn dark" onclick="goHome()">← Kembali</button>
+  <button class="btn" onclick="openService('IG Followers','ig_followers.jpg')">Followers</button>
+  <button class="btn" onclick="openService('IG Likes','ig_likes.jpg')">Likes</button>
+  <button class="btn" onclick="openService('IG Views','ig_views.jpg')">Views</button>
+  <button class="btn dark" onclick="openPage('home')">← Kembali</button>
 </div>
 
 <!-- FACEBOOK -->
 <div id="facebook" class="page center">
   <h1>Facebook</h1>
-  <button class="btn">Followers Page / Profil</button>
-  <button class="btn">Like Post</button>
-  <button class="btn">View Post</button>
-  <button class="btn dark" onclick="goHome()">← Kembali</button>
+  <button class="btn" onclick="openService('FB Followers','fb_followers.jpg')">Followers Page / Profil</button>
+  <button class="btn" onclick="openService('FB Likes','fb_likes.jpg')">Like Post</button>
+  <button class="btn" onclick="openService('FB Views','fb_views.jpg')">View Post</button>
+  <button class="btn dark" onclick="openPage('home')">← Kembali</button>
 </div>
 
-<!-- SERVICE VIEW -->
+<!-- SERVICE -->
 <div id="service" class="page center">
   <h1 id="serviceTitle"></h1>
-
-  <img id="servicePoster" class="poster">
+  <img id="serviceImg" class="poster">
 
   <div class="note">
-    <div>✔ Akaun mesti PUBLIC</div>
-    <div>✔ Proses 1–30 min (Max 48 jam)</div>
-    <div>✔ Refill jika drop</div>
+    ✔ Akaun mesti PUBLIC<br>
+    ✔ Proses 1–30 min (Max 48 jam)<br>
+    ✔ 30 Hari Warranty (Refill jika drop)
   </div>
 
-  <a id="waLink">
-    <button class="btn whatsapp">ORDER VIA WHATSAPP</button>
-  </a>
+  <button class="btn order"
+    onclick="window.open('https://wa.me/60197554127','_blank')">
+    ORDER VIA WHATSAPP
+  </button>
 
-  <button class="btn dark" onclick="back()">← Kembali</button>
+  <button class="btn dark" onclick="goBack()">← Kembali</button>
 </div>
 
 <script>
@@ -156,29 +130,18 @@ let lastPage='home';
 function openPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  lastPage='home';
+  lastPage=id;
 }
 
-function openService(name,img){
+function openService(title,img){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('service').classList.add('active');
-
-  document.getElementById('serviceTitle').innerText=name.toUpperCase()+" BOOST";
-  document.getElementById('servicePoster').src=img;
-  document.getElementById('waLink').href=
-    "https://wa.me/60197554127?text=Hi%20nak%20order%20"+name;
-
-  lastPage=document.querySelector('.page.active')?.id||'tiktok';
+  document.getElementById('serviceTitle').innerText=title;
+  document.getElementById('serviceImg').src=img;
 }
 
-function back(){
-  document.getElementById('service').classList.remove('active');
-  document.getElementById('tiktok').classList.add('active');
-}
-
-function goHome(){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('home').classList.add('active');
+function goBack(){
+  openPage(lastPage);
 }
 </script>
 
