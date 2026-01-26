@@ -12,60 +12,35 @@ body{
   color:#fff;
   font-family:Arial, sans-serif;
   text-align:center;
+  padding-bottom:90px;
 }
 
 /* HEADER */
 h1{
-  margin-top:24px;
+  margin:20px 0 6px;
   letter-spacing:2px;
 }
 .subtitle{
   color:#7aa8ff;
   font-size:14px;
-  margin-bottom:22px;
-}
-
-/* MENU */
-.menu{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  max-width:360px;
-  margin:0 auto 28px;
-}
-.menu button{
-  background:linear-gradient(135deg,#0f4cff,#00d4ff);
-  border:none;
-  padding:14px 0;
-  color:#fff;
-  font-weight:700;
-  border-radius:14px;
-  cursor:pointer;
-  box-shadow:0 8px 20px rgba(0,140,255,.35);
-}
-.menu button:active{
-  transform:scale(.96);
-}
-.menu button.active{
-  background:linear-gradient(135deg,#00ffd5,#00aaff);
-  box-shadow:0 0 25px rgba(0,255,213,.8);
+  margin-bottom:14px;
 }
 
 /* POSTER */
 .poster{
   display:none;
   justify-content:center;
-  margin:20px auto;
+  margin:15px auto;
   max-width:420px;
   animation:fade .25s ease;
 }
 .poster img{
   width:100%;
-  border-radius:16px;
-  box-shadow:0 0 28px #0f4cff;
+  border-radius:18px;
+  box-shadow:0 0 30px #0f4cff;
 }
 @keyframes fade{
-  from{opacity:0;transform:scale(.98)}
+  from{opacity:0;transform:scale(.97)}
   to{opacity:1;transform:scale(1)}
 }
 
@@ -80,20 +55,47 @@ h1{
 /* ORDER */
 .order-btn{
   display:inline-block;
-  margin:18px auto 36px;
+  margin:10px auto 20px;
   background:#25D366;
   color:#000;
-  padding:16px 28px;
+  padding:16px 30px;
   border-radius:40px;
   font-weight:bold;
   text-decoration:none;
+}
+
+/* BOTTOM MENU */
+.bottom-menu{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#081427;
+  display:flex;
+  justify-content:space-around;
+  padding:12px 6px 18px;
+  box-shadow:0 -10px 30px rgba(0,0,0,.6);
+}
+
+.bottom-menu button{
+  background:none;
+  border:none;
+  color:#7aa8ff;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.bottom-menu button.active{
+  color:#00ffd5;
+  text-shadow:0 0 10px rgba(0,255,213,.9);
 }
 </style>
 
 <script>
 function showService(id, wa, btn){
   document.querySelectorAll('.poster').forEach(p=>p.style.display="none");
-  document.querySelectorAll('.menu button').forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll('.bottom-menu button').forEach(b=>b.classList.remove("active"));
 
   document.getElementById(id).style.display="flex";
   btn.classList.add("active");
@@ -104,14 +106,30 @@ window.onload = function(){
   document.getElementById("btn-followers").click();
 }
 </script>
-</head>
 
+</head>
 <body>
 
 <h1>KALZ STORE</h1>
 <div class="subtitle">Pilih servis & terus order</div>
 
-<div class="menu">
+<!-- POSTERS -->
+<div id="followers" class="poster"><img src="followers.jpg"></div>
+<div id="likes" class="poster"><img src="likes.jpg"></div>
+<div id="views" class="poster"><img src="views.jpg"></div>
+<div id="share" class="poster"><img src="share.jpg"></div>
+<div id="save" class="poster"><img src="save.jpg"></div>
+
+<div class="note">
+✔ Akaun mesti <b>PUBLIC</b><br>
+✔ Proses 1–30 min (Max 48 jam)<br>
+✔ 30 Hari Warranty (Refill jika drop)
+</div>
+
+<a id="order" class="order-btn" href="#">ORDER VIA WHATSAPP</a>
+
+<!-- BOTTOM MENU -->
+<div class="bottom-menu">
   <button id="btn-followers"
     onclick="showService('followers','https://wa.me/60197554127?text=Hi%20nak%20order%20Followers',this)">
     Followers
@@ -137,21 +155,6 @@ window.onload = function(){
     Save
   </button>
 </div>
-
-<!-- POSTERS -->
-<div id="followers" class="poster"><img src="followers.jpg"></div>
-<div id="likes" class="poster"><img src="likes.jpg"></div>
-<div id="views" class="poster"><img src="views.jpg"></div>
-<div id="share" class="poster"><img src="share.jpg"></div>
-<div id="save" class="poster"><img src="save.jpg"></div>
-
-<div class="note">
-✔ Akaun mesti <b>PUBLIC</b><br>
-✔ Proses 1–30 min (Max 48 jam)<br>
-✔ 30 Hari Warranty (Refill jika drop)
-</div>
-
-<a id="order" class="order-btn" href="#">ORDER VIA WHATSAPP</a>
 
 </body>
 </html>
