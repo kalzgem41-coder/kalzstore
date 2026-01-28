@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senarai Harga Social Boost</title>
+    <title>KALZ STORE | Social Boost Services</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
@@ -15,127 +15,91 @@
         }
     </style>
 </head>
+
 <body class="bg-slate-900 text-white min-h-screen">
 
-    <header class="p-6 text-center border-b border-slate-800 bg-slate-950">
-        <h1 class="text-3xl font-bold text-blue-500 mb-2">🚀 Social Boost Services</h1>
-        <p class="text-slate-400 text-sm">Pilih platform dan pakej untuk menaikkan engagement anda.</p>
-    </header>
+<header class="p-6 text-center border-b border-slate-800 bg-slate-950">
+    <h1 class="text-3xl font-extrabold text-blue-500 mb-2">⚡ KALZ STORE</h1>
+    <p class="text-slate-400 text-sm">Servis Boost TikTok • Instagram • Facebook</p>
+</header>
 
-    <main class="max-w-4xl mx-auto p-6">
-        
-        <div class="flex justify-center gap-4 mb-8">
-            <button onclick="filterService('instagram')" class="px-6 py-2 rounded-full bg-pink-600 hover:bg-pink-700 transition font-semibold" id="btn-instagram">Instagram</button>
-            <button onclick="filterService('tiktok')" class="px-6 py-2 rounded-full bg-slate-700 hover:bg-slate-600 transition font-semibold" id="btn-tiktok">TikTok</button>
-            <button onclick="filterService('facebook')" class="px-6 py-2 rounded-full bg-slate-700 hover:bg-slate-600 transition font-semibold" id="btn-facebook">Facebook</button>
-        </div>
+<main class="max-w-5xl mx-auto p-6">
 
-        <div id="price-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            </div>
+    <!-- BUTTON PLATFORM -->
+    <div class="flex flex-wrap justify-center gap-4 mb-10">
+        <button onclick="filterService('tiktok')" id="btn-tiktok" class="px-6 py-2 rounded-full bg-teal-600 font-semibold">TikTok</button>
+        <button onclick="filterService('instagram')" id="btn-instagram" class="px-6 py-2 rounded-full bg-slate-700 hover:bg-slate-600 font-semibold">Instagram</button>
+        <button onclick="filterService('facebook')" id="btn-facebook" class="px-6 py-2 rounded-full bg-slate-700 hover:bg-slate-600 font-semibold">Facebook</button>
+    </div>
 
-    </main>
+    <!-- CARD LIST -->
+    <div id="price-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
-    <footer class="text-center p-6 text-slate-500 text-xs mt-10">
-        &copy; 2024 Social Boost App. Semua hak cipta terpelihara.
-    </footer>
+</main>
 
-    <script>
-        // --- 1. DATA HARGA (Edit di sini) ---
-        const services = [
-            {
-                platform: 'instagram',
-                title: 'Followers Murah',
-                count: '1,000 Followers',
-                price: 'RM 15.00',
-                features: ['Tiada Refill', 'Start Instant', 'Global Mix'],
-                color: 'text-pink-500'
-            },
-            {
-                platform: 'instagram',
-                title: 'Followers VIP (High Quality)',
-                count: '1,000 Followers',
-                price: 'RM 35.00',
-                features: ['Refill 30 Hari', 'Akun Real', 'Drop Rendah'],
-                color: 'text-pink-500'
-            },
-            {
-                platform: 'tiktok',
-                title: 'TikTok Followers',
-                count: '500 Followers',
-                price: 'RM 20.00',
-                features: ['Syarat Live', 'Proses Cepat', 'Kualiti Bagus'],
-                color: 'text-teal-400'
-            },
-            {
-                platform: 'tiktok',
-                title: 'TikTok Views (Viral)',
-                count: '10,000 Views',
-                price: 'RM 5.00',
-                features: ['Instant', 'Sesuai FYP', 'Murah'],
-                color: 'text-teal-400'
-            },
-            {
-                platform: 'facebook',
-                title: 'Page Likes',
-                count: '1,000 Likes',
-                price: 'RM 25.00',
-                features: ['Non-Drop', 'Warranty 30 Hari', 'Max 100k'],
-                color: 'text-blue-500'
-            }
-        ];
+<footer class="text-center p-6 text-slate-500 text-xs mt-10">
+    © 2024 KALZ STORE — Trusted Social Boost Service
+</footer>
 
-        // --- 2. LOGIC APLIKASI ---
-        const container = document.getElementById('price-list');
-        const buttons = document.querySelectorAll('button');
+<script>
+const WA_NUMBER = "60197554127";
 
-        function renderCards(filter = 'instagram') {
-            container.innerHTML = ''; // Kosongkan container
-            
-            // Filter data
-            const filteredData = services.filter(item => item.platform === filter);
+const services = [
 
-            // Generate HTML
-            filteredData.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'glass-card p-6 rounded-xl hover:scale-105 transition duration-300 relative overflow-hidden group';
-                
-                // Link WhatsApp Auto-Generate
-                const waMessage = `Hi, saya nak order pakej ${item.platform.toUpperCase()} - ${item.count} dengan harga ${item.price}`;
-                const waLink = `https://wa.me/60123456789?text=${encodeURIComponent(waMessage)}`;
+/* ================= TIKTOK ================= */
+{ platform:'tiktok', title:'TikTok Followers', count:'1,000 Followers', price:'RM 15', features:['Syarat Live','Fast Start','Trusted'], color:'text-teal-400' },
+{ platform:'tiktok', title:'TikTok Likes', count:'5,000 Likes', price:'RM 5', features:['Instant','Post Baru/Lama','Murah'], color:'text-teal-400' },
+{ platform:'tiktok', title:'TikTok Views', count:'10,000 Views', price:'RM 5', features:['FYP Friendly','Auto','Stable'], color:'text-teal-400' },
+{ platform:'tiktok', title:'TikTok Shares', count:'1,000 Shares', price:'RM 6', features:['Boost Reach','Fast','Safe'], color:'text-teal-400' },
+{ platform:'tiktok', title:'TikTok Saves', count:'1,000 Saves', price:'RM 6', features:['Naik Engagement','Instant','Realistic'], color:'text-teal-400' },
 
-                card.innerHTML = `
-                    <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-white/10 to-transparent rounded-bl-full -mr-10 -mt-10"></div>
-                    <h3 class="text-sm uppercase tracking-wider font-bold ${item.color} mb-1">${item.title}</h3>
-                    <div class="text-3xl font-bold text-white mb-4">${item.price}</div>
-                    <div class="text-lg font-semibold text-slate-300 mb-4 border-b border-slate-700 pb-4">${item.count}</div>
-                    <ul class="text-sm text-slate-400 space-y-2 mb-6">
-                        ${item.features.map(f => `<li class="flex items-center"><span class="mr-2 text-green-500">✓</span> ${f}</li>`).join('')}
-                    </ul>
-                    <a href="${waLink}" target="_blank" class="block w-full py-3 text-center bg-blue-600 hover:bg-blue-500 rounded-lg font-bold transition text-white">
-                        Beli Sekarang
-                    </a>
-                `;
-                container.appendChild(card);
-            });
+/* ================= INSTAGRAM ================= */
+{ platform:'instagram', title:'IG Followers', count:'1,000 Followers', price:'RM 18', features:['Fast','Non Drop','Trusted'], color:'text-pink-500' },
+{ platform:'instagram', title:'IG Likes', count:'5,000 Likes', price:'RM 6', features:['Instant','Post Baru/Lama','Safe'], color:'text-pink-500' },
+{ platform:'instagram', title:'IG Views', count:'10,000 Views', price:'RM 5', features:['Auto','Story/Reels','Stable'], color:'text-pink-500' },
+{ platform:'instagram', title:'IG Saves', count:'1,000 Saves', price:'RM 7', features:['Naik Explore','Fast','Trusted'], color:'text-pink-500' },
 
-            // Update butang aktif
-            buttons.forEach(btn => {
-                if(btn.id === `btn-${filter}`) {
-                    btn.classList.remove('bg-slate-700');
-                    if(filter === 'instagram') btn.classList.add('bg-pink-600');
-                    if(filter === 'tiktok') btn.classList.add('bg-teal-600');
-                    if(filter === 'facebook') btn.classList.add('bg-blue-600');
-                } else {
-                    btn.className = 'px-6 py-2 rounded-full bg-slate-700 hover:bg-slate-600 transition font-semibold text-slate-300';
-                }
-            });
-        }
+/* ================= FACEBOOK ================= */
+{ platform:'facebook', title:'FB Followers', count:'1,000 Followers', price:'RM 20', features:['Fast','Stable','Trusted'], color:'text-blue-500' },
+{ platform:'facebook', title:'FB Page Likes', count:'1,000 Likes', price:'RM 25', features:['Non Drop','Warranty','Page Only'], color:'text-blue-500' },
+{ platform:'facebook', title:'FB Post Likes', count:'5,000 Likes', price:'RM 8', features:['Instant','Post Baru/Lama','Safe'], color:'text-blue-500' },
+{ platform:'facebook', title:'FB Views', count:'10,000 Views', price:'RM 6', features:['Auto','Fast','Stable'], color:'text-blue-500' },
 
-        // Jalankan fungsi pertama kali
-        renderCards('instagram');
+];
 
-        // Fungsi Global untuk Button Click
-        window.filterService = renderCards;
-    </script>
+const container = document.getElementById('price-list');
+const buttons = document.querySelectorAll('button');
+
+function renderCards(filter){
+    container.innerHTML = '';
+    services.filter(s=>s.platform===filter).forEach(item=>{
+        const msg = `Hi KALZ STORE, saya nak order ${item.platform.toUpperCase()} | ${item.title} | ${item.count} | ${item.price}`;
+        const link = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+
+        const card = document.createElement('div');
+        card.className = 'glass-card p-6 rounded-xl hover:scale-105 transition';
+
+        card.innerHTML = `
+        <h3 class="text-sm font-bold uppercase ${item.color} mb-1">${item.title}</h3>
+        <div class="text-3xl font-extrabold mb-3">${item.price}</div>
+        <div class="text-slate-300 mb-4">${item.count}</div>
+        <ul class="text-sm text-slate-400 space-y-2 mb-6">
+            ${item.features.map(f=>`<li>✔ ${f}</li>`).join('')}
+        </ul>
+        <a href="${link}" target="_blank"
+           class="block text-center py-3 bg-blue-600 hover:bg-blue-500 rounded-lg font-bold">
+           ORDER WHATSAPP
+        </a>`;
+        container.appendChild(card);
+    });
+
+    buttons.forEach(b=>b.className='px-6 py-2 rounded-full bg-slate-700 hover:bg-slate-600 font-semibold');
+    document.getElementById(`btn-${filter}`).className='px-6 py-2 rounded-full font-semibold bg-blue-600';
+}
+
+renderCards('tiktok');
+window.filterService = renderCards;
+</script>
+
 </body>
 </html>
