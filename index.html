@@ -1,149 +1,141 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KALZ STORE</title>
-
-<style>
-*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
-body{
-  margin:0;
-  background:radial-gradient(circle at top,#061b33,#000814);
-  color:#fff;
-}
-.page{
-  display:none;
-  min-height:100vh;
-  padding:25px 20px;
-}
-.page.active{display:block}
-
-.center{text-align:center}
-
-.logo{
-  width:90px;height:90px;border-radius:50%;
-  margin:auto;
-  box-shadow:0 0 25px #00ffd5;
-}
-h1{margin:15px 0 5px;letter-spacing:2px}
-.subtitle{color:#9adfff;font-size:14px;margin-bottom:20px}
-
-.btn{
-  width:100%;
-  padding:16px;
-  margin:12px 0;
-  border:none;
-  border-radius:16px;
-  font-size:18px;
-  font-weight:bold;
-  color:#000;
-  background:linear-gradient(135deg,#00ffd5,#00aaff);
-  box-shadow:0 0 20px rgba(0,255,213,.6);
-}
-.btn.dark{
-  background:#111;
-  color:#fff;
-  box-shadow:none;
-}
-.poster{
-  width:100%;
-  max-width:420px;
-  border-radius:20px;
-  box-shadow:0 0 25px rgba(0,170,255,.5);
-  margin:15px auto;
-  display:block;
-}
-.note{font-size:14px;color:#cfefff;margin-top:15px}
-.order{
-  margin-top:20px;
-  background:#1ecf6b;
-  color:#000;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senarai Harga Social Boost</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
 </head>
+<body class="bg-slate-900 text-white min-h-screen">
 
-<body>
+    <header class="p-6 text-center border-b border-slate-800 bg-slate-950">
+        <h1 class="text-3xl font-bold text-blue-500 mb-2">🚀 Social Boost Services</h1>
+        <p class="text-slate-400 text-sm">Pilih platform dan pakej untuk menaikkan engagement anda.</p>
+    </header>
 
-<!-- HOME -->
-<div id="home" class="page active center">
-  <img src="logo.png" class="logo">
-  <h1>KALZ STORE</h1>
-  <div class="subtitle">Boost Sosial Media Automatik</div>
+    <main class="max-w-4xl mx-auto p-6">
+        
+        <div class="flex justify-center gap-4 mb-8">
+            <button onclick="filterService('instagram')" class="px-6 py-2 rounded-full bg-pink-600 hover:bg-pink-700 transition font-semibold" id="btn-instagram">Instagram</button>
+            <button onclick="filterService('tiktok')" class="px-6 py-2 rounded-full bg-slate-700 hover:bg-slate-600 transition font-semibold" id="btn-tiktok">TikTok</button>
+            <button onclick="filterService('facebook')" class="px-6 py-2 rounded-full bg-slate-700 hover:bg-slate-600 transition font-semibold" id="btn-facebook">Facebook</button>
+        </div>
 
-  <button class="btn" onclick="openPage('tiktok')">TikTok</button>
-  <button class="btn" onclick="openPage('instagram')">Instagram</button>
-  <button class="btn" onclick="openPage('facebook')">Facebook</button>
-</div>
+        <div id="price-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
 
-<!-- TIKTOK -->
-<div id="tiktok" class="page center">
-  <h1>TikTok</h1>
-  <button class="btn" onclick="openService('TikTok Followers','tt_followers.jpg')">Followers</button>
-  <button class="btn" onclick="openService('TikTok Likes','tt_likes.jpg')">Likes</button>
-  <button class="btn" onclick="openService('TikTok Views','tt_views.jpg')">Views</button>
-  <button class="btn" onclick="openService('TikTok Share','tt_share.jpg')">Share</button>
-  <button class="btn" onclick="openService('TikTok Save','tt_save.jpg')">Save</button>
-  <button class="btn dark" onclick="openPage('home')">← Kembali</button>
-</div>
+    </main>
 
-<!-- INSTAGRAM -->
-<div id="instagram" class="page center">
-  <h1>Instagram</h1>
-  <button class="btn" onclick="openService('IG Followers','ig_followers.jpg')">Followers</button>
-  <button class="btn" onclick="openService('IG Likes','ig_likes.jpg')">Likes</button>
-  <button class="btn" onclick="openService('IG Views','ig_views.jpg')">Views</button>
-  <button class="btn dark" onclick="openPage('home')">← Kembali</button>
-</div>
+    <footer class="text-center p-6 text-slate-500 text-xs mt-10">
+        &copy; 2024 Social Boost App. Semua hak cipta terpelihara.
+    </footer>
 
-<!-- FACEBOOK -->
-<div id="facebook" class="page center">
-  <h1>Facebook</h1>
-  <button class="btn" onclick="openService('FB Followers','fb_followers.jpg')">Followers Page / Profil</button>
-  <button class="btn" onclick="openService('FB Likes','fb_likes.jpg')">Like Post</button>
-  <button class="btn" onclick="openService('FB Views','fb_views.jpg')">View Post</button>
-  <button class="btn dark" onclick="openPage('home')">← Kembali</button>
-</div>
+    <script>
+        // --- 1. DATA HARGA (Edit di sini) ---
+        const services = [
+            {
+                platform: 'instagram',
+                title: 'Followers Murah',
+                count: '1,000 Followers',
+                price: 'RM 15.00',
+                features: ['Tiada Refill', 'Start Instant', 'Global Mix'],
+                color: 'text-pink-500'
+            },
+            {
+                platform: 'instagram',
+                title: 'Followers VIP (High Quality)',
+                count: '1,000 Followers',
+                price: 'RM 35.00',
+                features: ['Refill 30 Hari', 'Akun Real', 'Drop Rendah'],
+                color: 'text-pink-500'
+            },
+            {
+                platform: 'tiktok',
+                title: 'TikTok Followers',
+                count: '500 Followers',
+                price: 'RM 20.00',
+                features: ['Syarat Live', 'Proses Cepat', 'Kualiti Bagus'],
+                color: 'text-teal-400'
+            },
+            {
+                platform: 'tiktok',
+                title: 'TikTok Views (Viral)',
+                count: '10,000 Views',
+                price: 'RM 5.00',
+                features: ['Instant', 'Sesuai FYP', 'Murah'],
+                color: 'text-teal-400'
+            },
+            {
+                platform: 'facebook',
+                title: 'Page Likes',
+                count: '1,000 Likes',
+                price: 'RM 25.00',
+                features: ['Non-Drop', 'Warranty 30 Hari', 'Max 100k'],
+                color: 'text-blue-500'
+            }
+        ];
 
-<!-- SERVICE -->
-<div id="service" class="page center">
-  <h1 id="serviceTitle"></h1>
-  <img id="serviceImg" class="poster">
+        // --- 2. LOGIC APLIKASI ---
+        const container = document.getElementById('price-list');
+        const buttons = document.querySelectorAll('button');
 
-  <div class="note">
-    ✔ Akaun mesti PUBLIC<br>
-    ✔ Proses 1–30 min (Max 48 jam)<br>
-    ✔ 30 Hari Warranty (Refill jika drop)
-  </div>
+        function renderCards(filter = 'instagram') {
+            container.innerHTML = ''; // Kosongkan container
+            
+            // Filter data
+            const filteredData = services.filter(item => item.platform === filter);
 
-  <button class="btn order"
-    onclick="window.open('https://wa.me/60197554127','_blank')">
-    ORDER VIA WHATSAPP
-  </button>
+            // Generate HTML
+            filteredData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'glass-card p-6 rounded-xl hover:scale-105 transition duration-300 relative overflow-hidden group';
+                
+                // Link WhatsApp Auto-Generate
+                const waMessage = `Hi, saya nak order pakej ${item.platform.toUpperCase()} - ${item.count} dengan harga ${item.price}`;
+                const waLink = `https://wa.me/60123456789?text=${encodeURIComponent(waMessage)}`;
 
-  <button class="btn dark" onclick="goBack()">← Kembali</button>
-</div>
+                card.innerHTML = `
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-white/10 to-transparent rounded-bl-full -mr-10 -mt-10"></div>
+                    <h3 class="text-sm uppercase tracking-wider font-bold ${item.color} mb-1">${item.title}</h3>
+                    <div class="text-3xl font-bold text-white mb-4">${item.price}</div>
+                    <div class="text-lg font-semibold text-slate-300 mb-4 border-b border-slate-700 pb-4">${item.count}</div>
+                    <ul class="text-sm text-slate-400 space-y-2 mb-6">
+                        ${item.features.map(f => `<li class="flex items-center"><span class="mr-2 text-green-500">✓</span> ${f}</li>`).join('')}
+                    </ul>
+                    <a href="${waLink}" target="_blank" class="block w-full py-3 text-center bg-blue-600 hover:bg-blue-500 rounded-lg font-bold transition text-white">
+                        Beli Sekarang
+                    </a>
+                `;
+                container.appendChild(card);
+            });
 
-<script>
-let lastPage='home';
+            // Update butang aktif
+            buttons.forEach(btn => {
+                if(btn.id === `btn-${filter}`) {
+                    btn.classList.remove('bg-slate-700');
+                    if(filter === 'instagram') btn.classList.add('bg-pink-600');
+                    if(filter === 'tiktok') btn.classList.add('bg-teal-600');
+                    if(filter === 'facebook') btn.classList.add('bg-blue-600');
+                } else {
+                    btn.className = 'px-6 py-2 rounded-full bg-slate-700 hover:bg-slate-600 transition font-semibold text-slate-300';
+                }
+            });
+        }
 
-function openPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  lastPage=id;
-}
+        // Jalankan fungsi pertama kali
+        renderCards('instagram');
 
-function openService(title,img){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('service').classList.add('active');
-  document.getElementById('serviceTitle').innerText=title;
-  document.getElementById('serviceImg').src=img;
-}
-
-function goBack(){
-  openPage(lastPage);
-}
-</script>
-
+        // Fungsi Global untuk Button Click
+        window.filterService = renderCards;
+    </script>
 </body>
 </html>
